@@ -175,7 +175,7 @@ const o=a.createOscillator(),g=a.createGain();o.type="square";o.frequency.setVal
 function kyuin(){const a=ac();[0,.12].forEach(d=>{const o=a.createOscillator(),g=a.createGain();o.type="sawtooth";o.frequency.setValueAtTime(800,a.currentTime+d);o.frequency.exponentialRampToValueAtTime(4800,a.currentTime+d+.18);g.gain.setValueAtTime(.2*mv(),a.currentTime+d);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+d+.35);o.connect(g).connect(a.destination);o.start(a.currentTime+d);o.stop(a.currentTime+d+.4)})}
 function slamSnd(lv){tone(80,0,.4,"square",.3);tone(160+lv*120,0,.3,"sawtooth",.15);[0,1,2].forEach(k=>tone(600+lv*200+k*300,.05+k*.05,.2,"square",.08))}
 function shatSnd(){for(let i=0;i<20;i++)tone(1500+Math.random()*4000,i*.015,.12,"triangle",.07);tone(60,0,.6,"sine",.4)}
-const HY=["チャンス！","激アツ！！","超激アツ!!!","キリン柄!!!!","虹 確 定"],HC=["#3af","#3f6","#f22","#fd0","#fff"];
+const HY=["ノーマルリーチ！","SPリーチ！！","EXリーチ！！！","EX・キリン柄!!!!","虹 確 定"],HC=["#3af","#3f6","#f22","#fd0","#fff"];
 function hype(k){const h=$("hype");h.className="";h.innerHTML=`<span class="h${k}">${HY[k]}</span>`;void h.offsetWidth;h.className="slam";shake();flash(HC[k]);slamSnd(k);LAMP.lv=Math.max(LAMP.lv,k+1);if(k>=1)intense=true;if(k>=3)burst(k==4?"UR":"SSR",60);aceStage(k)}
 const HL="radial-gradient(circle at 32% 26%,#fff 0,rgba(255,255,255,.95) 6%,rgba(255,255,255,.55) 13%,rgba(255,255,255,0) 26%)",
 SH="radial-gradient(circle at 36% 30%,rgba(0,0,0,0) 45%,rgba(30,45,80,.22) 70%,rgba(15,25,50,.6) 100%)";
@@ -477,7 +477,7 @@ let td;if(o.isLR)td=7;else if(o.zero)td=0;else if(o.best>=4){td=(o.st>=2||o.sak)
 aceBanner(o.sak?"⚡ 先バレ ⚡":"","#6af");
 if(aceIv)clearInterval(aceIv);
 aceIv=setInterval(()=>{[0,1,2].forEach(i=>{const e=$("ar"+i);if(e&&!e.dataset.stop)e.textContent=Math.random()*10|0})},55)}
-function aceStage(k){if(!aceState||aceState.fin)return;const tx=["ノーマルリーチ！","SPリーチ！！","SPSPリーチ！！！","SPSP・キリン柄！！","🌈 虹 確 定 🌈"],cl=["#7df","#3f6","#f66","#fd0","#fff"];if(k>=0&&k<=4)aceBanner(tx[k],cl[k])}
+function aceStage(k){if(!aceState||aceState.fin)return;const tx=["ノーマルリーチ！","SPリーチ！！","EXリーチ！！！","EX・キリン柄！！","🌈 虹 確 定 🌈"],cl=["#7df","#3f6","#f66","#fd0","#fff"];if(k>=0&&k<=4)aceBanner(tx[k],cl[k])}
 function aceMid(){if(!aceState||aceState.fin||aceState.stoppedMid)return;aceState.stoppedMid=true;const o=aceState;let d,cls="";if(o.reach&&o.win&&!o.sr){d=o.td;cls="win"}else if(o.reach){d=(o.td+1+(Math.random()*8|0))%10;cls="tp"}else d=Math.random()*10|0;aceStop(1,d,cls)}
 function aceFinish(){if(!aceState||aceState.fin)return;const o=aceState;
 if(o.reach){const dw=o.win&&!o.sr;aceStop(0,o.td,dw?"win":"tp");aceStop(2,o.td,dw?"win":"tp");aceMid();aceBanner(dw?(o.zero?"🔥 0揃い 確変UR！ 🔥":"🎉 大当たり！ 🎉"):"","#fff")}
